@@ -22,8 +22,8 @@
 
 package org.eclipse.microprofile.health.tck;
 
-import org.eclipse.microprofile.health.tck.deployment.FailedChecks;
 import org.eclipse.microprofile.health.tck.deployment.ApplicationConfig;
+import org.eclipse.microprofile.health.tck.deployment.FailedChecks;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -56,9 +56,14 @@ public class HealthPayloadTest extends SimpleHttp {
         // aggregator / with auth
         Response response = getUrlContents("http://localhost:8080/health");
         System.out.println(response.getBody());
+
+        Assert.assertTrue("Response payload is missing", response.getBody().isPresent());
+
+        String responsePayload = response.getBody().get();
+
         Assert.assertTrue(
-                response.getBody().contains("first") &&
-                        response.getBody().contains("second")
+                responsePayload.contains("first") &&
+                    responsePayload.contains("second")
         );
 
         // direct / failure
@@ -72,7 +77,9 @@ public class HealthPayloadTest extends SimpleHttp {
         // aggregator / failed
         response = getUrlContents("http://localhost:8080/health", true);
         Assert.assertEquals("Expected 503", 503, response.getStatus());
-        Assert.assertTrue(response.getBody().contains("first") && response.getBody().contains("UP"));
+        Assert.assertTrue("Response payload is missing", response.getBody().isPresent());
+        responsePayload = response.getBody().get();
+        Assert.assertTrue(responsePayload.contains("first") && responsePayload.contains("UP"));
 
     }
 }

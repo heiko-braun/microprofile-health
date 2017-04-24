@@ -24,6 +24,7 @@ package org.eclipse.microprofile.health.tck;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Optional;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -41,7 +42,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 public class SimpleHttp {
 
     protected Response getUrlContents(String theUrl) {
-        return getUrlContents(theUrl, true);
+        return getUrlContents(theUrl, false);
     }
 
     protected Response getUrlContents(String theUrl, boolean useAuth) {
@@ -55,36 +56,37 @@ public class SimpleHttp {
 
         try {
 
-            CredentialsProvider provider = new BasicCredentialsProvider();
-            UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "password");
-            provider.setCredentials(AuthScope.ANY, credentials);
-
             HttpClientBuilder builder = HttpClientBuilder.create();
             if (!followRedirects) {
                 builder.disableRedirectHandling();
             }
+
             if (useAuth) {
+                CredentialsProvider provider = new BasicCredentialsProvider();
+                UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("admin", "password");
+                provider.setCredentials(AuthScope.ANY, credentials);
                 builder.setDefaultCredentialsProvider(provider);
             }
+
             HttpClient client = builder.build();
 
             HttpResponse response = client.execute(new HttpGet(theUrl));
             code = response.getStatusLine().getStatusCode();
 
-            if (null == response.getEntity()) {
-                throw new RuntimeException("No response content present");
+            if (response.getEntity() != null) {
+
+                BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent())
+                );
+
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    content.append(line + "\n");
+                }
+                bufferedReader.close();
             }
 
-            BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent())
-            );
-
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
-            }
-            bufferedReader.close();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -103,8 +105,8 @@ public class SimpleHttp {
             return status;
         }
 
-        public String getBody() {
-            return body;
+        public Optional<String> getBody() {
+            return (body!=null && !body.equals("")) ? Optional.of(body) : Optional.empty();
         }
 
         private int status;
