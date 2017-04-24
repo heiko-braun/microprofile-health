@@ -19,20 +19,33 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  */
+package org.eclipse.microprofile.health.tck.deployment;
 
-package org.eclipse.microprofile.health.inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import org.eclipse.microprofile.health.HealthStatus;
+import org.eclipse.microprofile.health.inject.Health;
+
 
 /**
- * Indicates that a method should be used as a health check procedure.
+ * @author Heiko Braun
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Health {
+@Path("/success")
+public class SuccessfulChecks {
 
+
+    @GET
+    @Health
+    @Path("/first")
+    public HealthStatus checkHealth() {
+        return HealthStatus.named("first").up();
+    }
+
+    @GET
+    @Health
+    @Path("/second")
+    public HealthStatus checkHealthInsecure() {
+        return HealthStatus.named("second").up().withAttribute("time", System.currentTimeMillis());
+    }
 }
-

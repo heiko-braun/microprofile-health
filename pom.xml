@@ -48,6 +48,7 @@
         <module>api</module>
         <module>tck</module>
         <module>spec</module>
+        <module>ri</module>
     </modules>
 
     <dependencyManagement>

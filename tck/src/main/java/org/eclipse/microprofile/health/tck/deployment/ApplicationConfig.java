@@ -20,19 +20,11 @@
  *
  */
 
-package org.eclipse.microprofile.health.inject;
+package org.eclipse.microprofile.health.tck.deployment;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-/**
- * Indicates that a method should be used as a health check procedure.
- */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Health {
-
+@ApplicationPath("/v1")
+public class ApplicationConfig extends Application {
 }
-

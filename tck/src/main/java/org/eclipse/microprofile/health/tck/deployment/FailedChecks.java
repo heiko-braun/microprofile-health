@@ -20,19 +20,32 @@
  *
  */
 
-package org.eclipse.microprofile.health.inject;
+package org.eclipse.microprofile.health.tck.deployment;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+import org.eclipse.microprofile.health.HealthStatus;
+import org.eclipse.microprofile.health.inject.Health;
+
 
 /**
- * Indicates that a method should be used as a health check procedure.
+ * @author Heiko Braun
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Health {
+@Path("/failed")
+public class FailedChecks {
 
+    @GET
+    @Health
+    @Path("/first")
+    public HealthStatus checkHealth() {
+        return HealthStatus.named("first").down();
+    }
+
+    @GET
+    @Health
+    @Path("/second")
+    public HealthStatus checkHealthInsecure() {
+        return HealthStatus.named("second").up().withAttribute("time", System.currentTimeMillis());
+    }
 }
-
