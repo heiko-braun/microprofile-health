@@ -1,4 +1,5 @@
 /*
+ *******************************************************************************
  * Copyright (c) 2016-2017 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -15,19 +16,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- */
-package org.eclipse.microprofile.config.tck.converters;
-
-import org.eclipse.microprofile.config.spi.Converter;
+ *******************************************************************************/
 
 /**
- * @author <a href="mailto:struberg@apache.org">Mark Struberg</a>
+ * <p>CDI Support for Microprofile Health
+ *
+ * TODO
+ *
+ * @version 1.0
  */
-public class DuckConverter implements Converter<Duck> {
+package org.eclipse.microprofile.health.inject;
 
-    @Override
-    public Duck convert(String value) {
-        return new Duck(value);
-    }
-}

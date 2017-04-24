@@ -1,4 +1,5 @@
 /*
+ *******************************************************************************
  * Copyright (c) 2016-2017 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
@@ -15,22 +16,16 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- */
-package org.eclipse.microprofile.config.tck.converters;
+ *******************************************************************************/
 
 /**
- * @author <a href="mailto:struberg@apache.org">Mark Struberg</a>
+ * <p>Health Checks for Java Microprofile
+ *
+ * <h2>Rational</h2>
+ *
+ * TODO
+ *
+ * @version 1.0
  */
-public class Duck {
-    private final String name;
+package org.eclipse.microprofile.health;
 
-
-    public Duck(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}

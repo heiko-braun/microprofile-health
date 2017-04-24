@@ -18,14 +18,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <!-- This is just for now and will not work if the API has a separate release cycle than the rest. -->
-        <groupId>org.eclipse.microprofile.config</groupId>
-        <artifactId>microprofile.config.parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>org.eclipse.microprofile.health</groupId>
+        <artifactId>microprofile-health-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
-    <groupId>org.eclipse.microprofile.config.tck</groupId>
-    <artifactId>microprofile-config-tck</artifactId>
+
+    <groupId>org.eclipse.microprofile.health.tck</groupId>
+    <artifactId>microprofile-health-tck</artifactId>
+    <name>MicroProfile Health TCK</name>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -49,11 +51,11 @@
     <dependencies>
         <dependency>
             <groupId>org.eclipse.microprofile.apis</groupId>
-            <artifactId>microprofile-config_1.0_api</artifactId>
+            <artifactId>microprofile-health-api</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
@@ -103,5 +105,5 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    
+
 </project>

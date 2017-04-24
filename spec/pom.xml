@@ -18,14 +18,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <!-- This is just for now and will not work if the API has a separate release cycle than the rest. -->
-        <groupId>org.eclipse.microprofile.config</groupId>
-        <artifactId>microprofile.config.parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>org.eclipse.microprofile.health</groupId>
+        <artifactId>microprofile-health-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
-    <groupId>org.eclipse.microprofile.config.specs</groupId>
-    <artifactId>microprofile-config-spec</artifactId>
+
+    <groupId>org.eclipse.microprofile.health.specs</groupId>
+    <artifactId>microprofile-health-spec</artifactId>
+    <name>MicroProfile Health Specs</name>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 

@@ -18,16 +18,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <!-- This is just for now and will not work if the API has a separate release cycle than the rest. -->
-        <groupId>org.eclipse.microprofile.config</groupId>
-        <artifactId>microprofile.config.parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>org.eclipse.microprofile.health</groupId>
+        <artifactId>microprofile-health-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
 
     <groupId>org.eclipse.microprofile.apis</groupId>
-    <artifactId>microprofile-config_1.0_api</artifactId>
+    <artifactId>microprofile-health-api</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>MicroProfile Config API</name>
+    <name>MicroProfile Health API</name>
 
 
     <dependencies>
@@ -37,7 +37,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -52,30 +52,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>biz.aQute.bnd</groupId>
-                <artifactId>bnd-maven-plugin</artifactId>
-                <version>2.4.1</version>
-
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>bnd-process</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <Bundle-SymbolicName>org.eclipse.microprofile.config</Bundle-SymbolicName>
-                    <Bundle-Name>MicroProfile config bundle</Bundle-Name>
-                    <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
-                </configuration>
             </plugin>
         </plugins>
     </build>
