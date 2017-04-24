@@ -29,7 +29,6 @@
     <version>1.0-SNAPSHOT</version>
     <name>MicroProfile Health API</name>
 
-
     <dependencies>
         <dependency>
             <groupId>javax.enterprise</groupId>
