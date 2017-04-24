@@ -191,6 +191,7 @@
                 <configuration>
                     <excludes>
                         <exclude>.travis.yml.*</exclude>
+                        <exclude>*.adoc</exclude>
                         <exclude>bnd.bnd</exclude>
                         <exclude>*.log</exclude>
                         <exclude>.checkstyle</exclude>
