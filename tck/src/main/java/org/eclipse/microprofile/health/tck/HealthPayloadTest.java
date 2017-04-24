@@ -66,12 +66,14 @@ public class HealthPayloadTest extends SimpleHttp {
                     responsePayload.contains("second")
         );
 
+        // TODO: all web context roots are really vendor specific
+
         // direct / failure
-        response = getUrlContents("http://localhost:8080/rest/v1/failed/first", false);
+        response = getUrlContents("http://localhost:8080/tck/failed/first", false);
         Assert.assertEquals("Expected 503", 503, response.getStatus());
 
         // direct / success
-        response = getUrlContents("http://localhost:8080/rest/v1/failed/second", false);
+        response = getUrlContents("http://localhost:8080/tck/failed/second", false);
         Assert.assertEquals("Expected 200", 200, response.getStatus());
 
         // aggregator / failed

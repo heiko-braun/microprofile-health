@@ -25,6 +25,6 @@ package org.eclipse.microprofile.health.tck.deployment;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/v1")
+@ApplicationPath("/tck")
 public class ApplicationConfig extends Application {
 }
